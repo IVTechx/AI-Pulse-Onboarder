@@ -19,7 +19,7 @@ export async function extractText(file) {
 
   if (file.mimetype === "application/pdf") {
     const parser = new PDFParse({ data: file.buffer });
-    const data = await parser.getText();
+    const data = await parser.getText({ pageJoiner: "" });
     await parser.destroy();
     const text = normalizeText(data.text || "");
 
