@@ -37,7 +37,7 @@ export default function FileUpload({ onUpload, onUploaded }: FileUploadProps) {
     }
   };
   
-    const handleDragOver = (e) => {
+    const handleDragOver = (e: React.DragEvent<HTMLElement>) => {
     e.preventDefault();
     setIsDragging(true);
   }
@@ -46,7 +46,7 @@ export default function FileUpload({ onUpload, onUploaded }: FileUploadProps) {
   setIsDragging(false);
 };
 
-const handleDrop = (e) => {
+const handleDrop = (e: React.DragEvent<HTMLElement>) => {
   e.preventDefault();
   setIsDragging(false);
 
