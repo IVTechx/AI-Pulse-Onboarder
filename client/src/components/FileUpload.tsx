@@ -52,14 +52,14 @@ const handleDrop = (e: React.DragEvent<HTMLElement>) => {
 
   if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
     const droppedFile = e.dataTransfer.files[0];
-    
     const acceptedExtensions = [".pdf", ".txt", ".md", ".markdown"];
-    const fileExtension = "." + droppedFile.name.split(".").pop().toLowerCase();
+    const fileNameParts = droppedFile.name.split(".");
+    const ext = fileNameParts.length > 1 ? `.${fileNameParts.pop()?.toLowerCase()}` : "";
     const isAcceptedMime = ["application/pdf", "text/plain", "text/markdown"].includes(droppedFile.type);
 
-    if (isAcceptedMime || acceptedExtensions.includes(fileExtension)) {
+    if (isAcceptedMime || (ext && acceptedExtensions.includes(ext))) {
       setFile(droppedFile);
-      setError(""); 
+      setError("");
     } else {
       setError("Unsupported file format. Please drop a PDF, TXT, or Markdown file.");
     }
